@@ -3,8 +3,7 @@ package com.patterns.factory;
 public class DrawingFactory {
 
 	// Supply a calling class with the appropriate instance of Drawing depending
-	// on the
-	// parameter drawingType
+	// on the parameter drawingType
 	public Drawing getDrawing(String drawingType) {
 		if ("Circle".equalsIgnoreCase(drawingType))
 			return new Circle();
