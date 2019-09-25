@@ -9,3 +9,5 @@ The Factory Method Pattern is also known as Virtual Constructor.
 2. Singleton Pattern says that just"define a class that has only one instance and provides a global point of access to it".
 
 3. Abstract Factory Pattern says that just define an interface or abstract class for creating families of related (or dependent) objects but without specifying their concrete sub-classes.That means Abstract Factory lets a class return a factory of classes. So, this is the reason that Abstract Factory Pattern is one level higher than the Factory Pattern. 
+
+4. Prototype pattern says clone an existing object instead of creating new one and can also be customized as per the requirement. A possible real world application might be say, when you need to create a spreadsheet containing many cells. Rather than set the style for each newly created cell to override the default stylings, you'd use a Prototype pattern to create a template cell, and clone that cell when creating new cells.
