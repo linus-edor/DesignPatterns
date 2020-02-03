@@ -3,7 +3,6 @@ package com.patterns.tests;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,6 +13,8 @@ import org.junit.runner.RunWith;
 
 import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 import com.anarsoft.vmlens.concurrent.junit.ThreadCount;
+import com.patterns.builder.BankAccount;
+import com.patterns.builder.BankAccount.BankAccountBuilder;
 import com.patterns.factory.Circle;
 import com.patterns.factory.Drawing;
 import com.patterns.factory.DrawingFactory;
@@ -45,6 +46,7 @@ public class PatternsTest {
 	}
 
 	@Test
+	@ThreadCount(1)
 	public void test() {
 		// Factory method pattern
 		DrawingFactory factory = new DrawingFactory();
@@ -60,11 +62,25 @@ public class PatternsTest {
 		assertTrue(rect instanceof Rectangle);
 		assertEquals(50, rect.getArea());
 	}
-
-	private static final int THREAD_COUNT = 4; // number of concurrent processes
+	
+	@Test
+	@ThreadCount(1)
+	public void testBuilderPattern() {
+		BankAccount account = new BankAccountBuilder("Linus", "00102993230293")
+				.isActive(true)
+				.wantsNewsLetter(true)
+				.withEmail("ll.ed@mail.com")
+				.build();
+//		System.out.println("Account name::" + account.getAccountName());
+		assertNotNull(account.getAccountName());
+		assertNotNull(account.getAccountNumber());
+		assertNotNull(account.getEmail());
+		assertEquals("ll.ed@mail.com", account.getEmail());
+		assertNull(account.getAccountType());
+	}
 
 	@Test
-	@ThreadCount(THREAD_COUNT) // run this unit concurrently
+	@ThreadCount(4) // run this unit concurrently
 	public void testData() {
 		addData.addOne();
 	}
@@ -77,5 +93,5 @@ public class PatternsTest {
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5 }, data);
 		assertNotEquals(new Integer[] { 1, 2, 3, 4 }, data);
 	}
-
+	
 }

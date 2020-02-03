@@ -3,7 +3,8 @@
 Simple reference implementations of various design patterns using java.
 
 1. The factory pattern.
-A Factory Pattern or Factory Method Pattern says that just define an interface or abstract class for creating an object but let the subclasses decide which class to instantiate. In other words, subclasses are responsible to create the instance of the class.
+A Factory Pattern or Factory Method Pattern says that just define an interface or abstract class for creating an object but
+ let the subclasses decide which class to instantiate. In other words, subclasses are responsible to create the instance of the class.
 The Factory Method Pattern is also known as Virtual Constructor.
 
 2. Singleton Pattern says that just"define a class that has only one instance and provides a global point of access to it".
@@ -20,3 +21,13 @@ There are three major issues with Factory and Abstract Factory design patterns w
 i. Too Many arguments to pass from client program to the Factory class that can be error prone because most of the time, the type of arguments are same and from client side its hard to maintain the order of the argument.
 ii. Some of the parameters might be optional but in Factory pattern, we are forced to send all the parameters and optional parameters need to send as NULL.
 iii. If the object is heavy and its creation is complex, then all that complexity will be part of Factory classes that is confusing.
+
+Builder pattern solves the issue with large number of optional parameters and inconsistent
+ state by providing a way to build the object step-by-step and provide a method that will actually return the final Object.
+ 
+ When to Use Builder Pattern:
+When the process involved in creating an object is extremely complex, with lots of mandatory and optional parameters
+When an increase in the number of constructor parameters leads to a large list of constructors
+When client expects different representations for the object that's constructed
+ 
+ 
