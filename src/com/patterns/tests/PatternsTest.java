@@ -74,6 +74,7 @@ public class PatternsTest {
 		Shape rect2 = rect.clone();
 		assertEquals(-1, rect2.x);
 		assertEquals(rect, rect2);
+		assertTrue(rect.equals(rect2));
 		assertTrue("These two shape objects are identical but different!",rect != rect2);
 		assertEquals(rect.id, rect2.id);
 	}
