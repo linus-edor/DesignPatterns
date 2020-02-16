@@ -30,4 +30,17 @@ When the process involved in creating an object is extremely complex, with lots 
 When an increase in the number of constructor parameters leads to a large list of constructors
 When client expects different representations for the object that's constructed
  
+6. The prototype pattern 
+Prototype is a creational design pattern that allows cloning objects,
+even complex ones, without coupling to their specific classes.
+All prototype classes should have a common interface that makes it 
+possible to copy objects even if their concrete classes are unknown. 
+Prototype objects can produce full copies since objects of the same 
+class can access each other’s private fields.This pattern is used when
+creation of object directly is costly. For example, an object is to be 
+created after a costly database operation. We can cache the object, 
+returns its clone on next request and update the 
+database as and when needed thus reducing database calls.
+The Prototype pattern is available in Java out of the box with a Cloneable interface.
+
  

@@ -20,6 +20,7 @@ import com.patterns.factory.Drawing;
 import com.patterns.factory.DrawingFactory;
 import com.patterns.factory.Rectangle;
 import com.patterns.factory.Square;
+import com.patterns.prototype.Shape;
 import com.patterns.singleton.AddData;
 import com.patterns.singleton.MySingleton;
 
@@ -47,7 +48,7 @@ public class PatternsTest {
 
 	@Test
 	@ThreadCount(1)
-	public void test() {
+	public void testFactoryPattern() {
 		// Factory method pattern
 		DrawingFactory factory = new DrawingFactory();
 		Drawing circle = factory.getDrawing("Circle");
@@ -62,15 +63,26 @@ public class PatternsTest {
 		assertTrue(rect instanceof Rectangle);
 		assertEquals(50, rect.getArea());
 	}
-	
+
+	@ThreadCount(1)
+	@Test
+	public void testPrototypePattern() {
+		Shape rect = new com.patterns.prototype.Rectangle();
+		rect.id = "1";
+		rect.x = -1;
+		rect.y = 1;
+		Shape rect2 = rect.clone();
+		assertEquals(-1, rect2.x);
+		assertEquals(rect, rect2);
+		assertTrue("These two shape objects are identical but different!",rect != rect2);
+		assertEquals(rect.id, rect2.id);
+	}
+
 	@Test
 	@ThreadCount(1)
 	public void testBuilderPattern() {
-		BankAccount account = new BankAccountBuilder("Linus", "00102993230293")
-				.isActive(true)
-				.wantsNewsLetter(true)
-				.withEmail("ll.ed@mail.com")
-				.build();
+		BankAccount account = new BankAccountBuilder("Linus", "00102993230293").isActive(true).wantsNewsLetter(true)
+				.withEmail("ll.ed@mail.com").build();
 //		System.out.println("Account name::" + account.getAccountName());
 		assertNotNull(account.getAccountName());
 		assertNotNull(account.getAccountNumber());
@@ -93,5 +105,5 @@ public class PatternsTest {
 		assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5 }, data);
 		assertNotEquals(new Integer[] { 1, 2, 3, 4 }, data);
 	}
-	
+
 }
