@@ -43,4 +43,31 @@ returns its clone on next request and update the
 database as and when needed thus reducing database calls.
 The Prototype pattern is available in Java out of the box with a Cloneable interface.
 
+7. Chain of Responsibility is a behavioral design pattern that lets you pass requests
+ along a chain of handlers. Upon receiving a request, each handler decides either to
+ process the request or to pass it to the next handler in the chain. 
+ ..... https://refactoring.guru/design-patterns/chain-of-responsibility
+ Like many other behavioral design patterns, the Chain of Responsibility relies on 
+ transforming particular behaviors into stand-alone objects called handlers. 
+ In addition to processing a request, handlers pass the request further along the chain. 
+ The request travels along the chain until all handlers have had a chance to process it.
+ A handler can decide not to pass the request further down the chain and effectively stop any 
+ further processing. 
+ For instance, when a user clicks a button, the event propagates through the chain of GUI
+ elements that starts with the button, goes along its containers (like forms or panels), and 
+ ends up with the main application window. 
+ in essence, it's a design that let's a request pass through a chain of handlers each of which 
+ checks the state of the request and decide if they should process it or forward to the next handler
+ in the chain or send a response back to the caller.
+ STRUCTURE:
+ Handler interface --> BaseHandler --> Concrete Handlers
+ APPLICABILITY
+ Use the Chain of Responsibility pattern when your program is expected to process different kinds of requests
+ in various ways, but the exact types of requests and their sequences are unknown beforehand.
+ Use the pattern when it’s essential to execute several handlers in a particular order.
+ Use the CoR pattern when the set of handlers and their order are supposed to change at runtime.
+ 
+ 
+ 
+
  
