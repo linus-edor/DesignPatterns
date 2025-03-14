@@ -15,11 +15,13 @@ import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 import com.anarsoft.vmlens.concurrent.junit.ThreadCount;
 import com.patterns.builder.BankAccount;
 import com.patterns.builder.BankAccount.BankAccountBuilder;
-import com.patterns.factory.Circle;
-import com.patterns.factory.Drawing;
-import com.patterns.factory.DrawingFactory;
-import com.patterns.factory.Rectangle;
-import com.patterns.factory.Square;
+import com.patterns.factory.Client;
+import com.patterns.factory.FourWheeler;
+import com.patterns.factory.FourWheelerFactory;
+import com.patterns.factory.TwoWheeler;
+import com.patterns.factory.TwoWheelerFactory;
+import com.patterns.factory.Vehicle;
+import com.patterns.factory.VehicleFactory;
 import com.patterns.prototype.Shape;
 import com.patterns.singleton.AddData;
 import com.patterns.singleton.MySingleton;
@@ -46,22 +48,25 @@ public class PatternsTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
+
 	@ThreadCount(1)
-	public void testFactoryPattern() {
-		// Factory method pattern
-		DrawingFactory factory = new DrawingFactory();
-		Drawing circle = factory.getDrawing("Circle");
-		assertTrue(circle instanceof Circle);
-		assertEquals(300, circle.getArea());
+	@Test
+	public void testFactoryMethodPattern() {
+	        VehicleFactory twoWheelerFactory = new TwoWheelerFactory();
+	        Client twoWheelerClient = new Client(twoWheelerFactory);
+	        Vehicle twoWheeler = twoWheelerClient.getVehicle();
+	        twoWheeler.printVehicle();
 
-		Drawing square = factory.getDrawing("Square");
-		assertTrue(square instanceof Square);
-		assertEquals(100, square.getArea());
-
-		Drawing rect = factory.getDrawing("rectangle");
-		assertTrue(rect instanceof Rectangle);
-		assertEquals(50, rect.getArea());
+	        VehicleFactory fourWheelerFactory = new FourWheelerFactory();
+	        Client fourWheelerClient = new Client(fourWheelerFactory);
+	        Vehicle fourWheeler = fourWheelerClient.getVehicle();
+	        fourWheeler.printVehicle();
+	    
+	        assertTrue(twoWheeler != null && twoWheeler instanceof TwoWheeler);
+	        assertTrue(fourWheeler != null && fourWheeler instanceof FourWheeler);
+	        
+	        assertEquals("two wheeler", twoWheeler.printVehicle());
+	        assertEquals("four wheeler", fourWheeler.printVehicle());
 	}
 
 	@ThreadCount(1)
@@ -82,8 +87,10 @@ public class PatternsTest {
 	@Test
 	@ThreadCount(1)
 	public void testBuilderPattern() {
-		BankAccount account = new BankAccountBuilder("Linus", "00102993230293").isActive(true).wantsNewsLetter(true)
-				.withEmail("ll.ed@mail.com").build();
+		BankAccount account = new BankAccountBuilder("Linus", "00102993230293")
+				.isActive(true).wantsNewsLetter(true)
+				.withEmail("ll.ed@mail.com")
+				.build();
 //		System.out.println("Account name::" + account.getAccountName());
 		assertNotNull(account.getAccountName());
 		assertNotNull(account.getAccountNumber());

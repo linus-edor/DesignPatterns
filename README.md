@@ -67,7 +67,76 @@ The Prototype pattern is available in Java out of the box with a Cloneable inter
  Use the pattern when it’s essential to execute several handlers in a particular order.
  Use the CoR pattern when the set of handlers and their order are supposed to change at runtime.
  
- 
- 
+ 8. The adapter design pattern is a structural design pattern that allows two unrelated/uncommon 
+ interfaces to work together. In other words, the adapter pattern makes two incompatible interfaces
+  compatible without changing their existing code.
+ Interfaces may be incompatible, but the inner functionality should match the requirement.
+The adapter pattern is often used to make existing classes work with others without modifying their source code.
+Adapter patterns use a single class (the adapter class) to join functionalities of independent or incompatible interfaces/classes.
+The adapter pattern also is known as the wrapper, an alternative naming shared with the decorator design pattern.
+This pattern converts the (incompatible) interface of a class (the adaptee) into another interface (the target) that clients require.
+The adapter pattern also lets classes work together, which, otherwise, couldn't have worked, because of the incompatible interfaces.     
+Object Adapter Pattern
+In this approach, we will use the Java composition, and our adapter contains the source object. 
+The composition is used as a reference to the wrapped class within the adapter.
+Class Adapter Pattern
+In this approach, we use the Java Inheritance and extend the source class. 
+Two Ways Adapter
+The two-ways adapters are adapters that implement both interfaces of the target and adaptee. 
+The adapted object can be used as the target in new systems dealing with target classes or as
+ the adaptee in other systems dealing with the adaptee classes.
+https://dzone.com/articles/adapter-design-pattern-in-java
+Check on adapter vs Decorator
+Applicability
+Use the Adapter class when you want to use some existing class, but its interface isn’t compatible
+ with the rest of your code.
+The Adapter pattern lets you create a middle-layer class that serves as a translator between your 
+code and a legacy class, a 3rd-party class or any other class with a weird interface.
+Use the pattern when you want to reuse several existing subclasses that lack some common
+functionality that can’t be added to the superclass.
+You could extend each subclass and put the missing functionality into new child classes. 
+However, you’ll need to duplicate the code across all of these new classes, which smells 
+really bad.
+
+9. Command pattern is a behavioral design pattern which is useful to abstract 
+   business logic into discrete actions which we call commands. This command 
+   object helps in loose coupling between two classes where one class (invoker) 
+   shall call a method on other class (receiver) to perform a business operation.
+   
+   In object-oriented programming, the command pattern is a behavioral design 
+   pattern in which an object is used to encapsulate all information needed to 
+   perform an action, a business operation or trigger an event e.g. method name, 
+   receiver object reference and method parameter values, if any. This object is 
+   called command.
+   The similar approach is adapted into chain of responsibility pattern as well. 
+   Only difference is that in command there is one request handler, and in chain 
+   of responsibility there can be many handlers for single request object.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
